@@ -25,7 +25,7 @@ ifneq ($(TARGET_PRODUCT), am1808evm)
 rowboat: sgx
 else
 ifeq ($(TARGET_PRODUCT), dm3730logic)
-rowboat: sgx
+rowboat: sgx wl12xx_compat dm3730logic_modules
 else 
 rowboat: build_kernel
 endif
@@ -72,6 +72,7 @@ ifeq ($(TARGET_PRODUCT), am45xevm)
 endif
 ifeq ($(TARGET_PRODUCT), dm3730logic)
 	$(MAKE) -C kernel ARCH=arm dm3730_logic_android_defconfig
+	$(MAKE) -f device/logic/$(TARGET_PRODUCT)/AndroidKernel.mk
 endif
 endif
 	$(MAKE) -C kernel ARCH=arm CROSS_COMPILE=../$($(combo_target)TOOLS_PREFIX) uImage
