@@ -72,7 +72,6 @@ ifeq ($(TARGET_PRODUCT), am45xevm)
 endif
 ifeq ($(TARGET_PRODUCT), dm3730logic)
 	$(MAKE) -C kernel ARCH=arm omap3logic_android_defconfig
-	$(MAKE) -f device/logic/$(TARGET_PRODUCT)/AndroidKernel.mk
 endif
 endif
 	$(MAKE) -C kernel ARCH=arm CROSS_COMPILE=../$($(combo_target)TOOLS_PREFIX) uImage
@@ -86,7 +85,6 @@ wl12xx_compat: build_kernel
 
 dm3730logic_modules: build_kernel
 	$(MAKE) -C kernel ARCH=arm CROSS_COMPILE=../$($(combo_target)TOOLS_PREFIX) modules
-	$(MAKE) -f device/logic/$(TARGET_PRODUCT)/AndroidKernel.mk
 
 # Build Syslink
 syslink: 
