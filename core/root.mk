@@ -71,7 +71,7 @@ ifeq ($(TARGET_PRODUCT), am45xevm)
 	$(MAKE) -C kernel ARCH=arm am4530_evm_android_defconfig
 endif
 ifeq ($(TARGET_PRODUCT), dm3730logic)
-	$(MAKE) -C kernel ARCH=arm dm3730_logic_android_defconfig
+	$(MAKE) -C kernel ARCH=arm omap3logic_android_defconfig
 	$(MAKE) -f device/logic/$(TARGET_PRODUCT)/AndroidKernel.mk
 endif
 endif
@@ -84,6 +84,9 @@ sgx: build_kernel
 wl12xx_compat: build_kernel
 	$(MAKE) -C hardware/ti/wlan/WL1271_compat/drivers ANDROID_ROOT_DIR=$(ANDROID_INSTALL_DIR) TOOLS_PREFIX=$($(combo_target)TOOLS_PREFIX) ARCH=arm install
 
+dm3730logic_modules: build_kernel
+	$(MAKE) -C kernel ARCH=arm CROSS_COMPILE=../$($(combo_target)TOOLS_PREFIX) modules
+	$(MAKE) -f device/logic/$(TARGET_PRODUCT)/AndroidKernel.mk
 
 # Build Syslink
 syslink: 
