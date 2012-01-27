@@ -21,12 +21,12 @@ else
 ifeq ($(TARGET_PRODUCT), flashboard)
 rowboat: sgx wl12xx_compat
 else
-ifneq ($(TARGET_PRODUCT), am1808evm)
-rowboat: sgx
-else
 ifeq ($(TARGET_PRODUCT), dm3730logic)
 rowboat: sgx wl12xx_compat dm3730logic_modules
 else 
+ifneq ($(TARGET_PRODUCT), am1808evm)
+rowboat: sgx
+else
 rowboat: build_kernel
 endif
 endif
